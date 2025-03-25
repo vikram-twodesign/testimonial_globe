@@ -385,7 +385,7 @@ export function SimpleGlobe({
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="text-center">
             <div className="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full mx-auto animate-spin"></div>
-            <p className="mt-2 text-gray-800">Loading globe...</p>
+            <p className="mt-2 text-gray-800 dark:text-gray-200">Loading globe...</p>
           </div>
         </div>
       )}
@@ -393,12 +393,12 @@ export function SimpleGlobe({
       {/* Testimonial Popup */}
       {selectedTestimonial && (
         <div className="fixed inset-0 flex items-center justify-center z-30 bg-black/40">
-          <div className="bg-white/95 p-8 rounded-xl max-w-md text-gray-800 shadow-2xl relative 
+          <div className="bg-white/95 dark:bg-gray-900/95 p-8 rounded-xl max-w-md text-gray-800 dark:text-gray-100 shadow-2xl relative 
                          transition-all duration-500 animate-in fade-in zoom-in-95
-                         border border-gray-200 backdrop-blur-sm">
+                         border border-gray-200 dark:border-gray-700 backdrop-blur-sm">
             <button 
-              className="absolute top-3 right-3 p-1.5 text-gray-500 hover:text-gray-800
-                        hover:bg-gray-200/50 rounded-full 
+              className="absolute top-3 right-3 p-1.5 text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white
+                        hover:bg-gray-200/50 dark:hover:bg-gray-700/50 rounded-full 
                         transition-colors"
               onClick={() => {
                 setSelectedTestimonial(null);
@@ -418,15 +418,15 @@ export function SimpleGlobe({
             <div className="mb-2 pb-1 inline-block border-b-2 border-blue-500/50">
               <h3 className="text-xl font-bold pr-6">{selectedTestimonial.name}</h3>
             </div>
-            <p className="text-gray-600 italic font-medium text-sm">{selectedTestimonial.company}</p>
-            <p className="text-blue-600 text-xs mb-4">{selectedTestimonial.location}</p>
-            <p className="text-gray-700 leading-relaxed text-sm">"{selectedTestimonial.testimonial}"</p>
+            <p className="text-gray-600 dark:text-gray-300 italic font-medium text-sm">{selectedTestimonial.company}</p>
+            <p className="text-blue-600 dark:text-blue-400 text-xs mb-4">{selectedTestimonial.location}</p>
+            <p className="text-gray-700 dark:text-gray-200 leading-relaxed text-sm">"{selectedTestimonial.testimonial}"</p>
           </div>
         </div>
       )}
       
       {/* Instruction text */}
-      <div className="absolute bottom-5 left-0 right-0 text-center text-gray-800 text-sm opacity-70">
+      <div className="absolute bottom-5 left-0 right-0 text-center text-gray-800 dark:text-gray-200 text-sm opacity-70">
         Drag to rotate the globe. Click on markers to view testimonials.
       </div>
     </div>

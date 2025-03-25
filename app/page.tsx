@@ -1,10 +1,21 @@
 "use client"
 
 import { SimpleGlobe } from "@/components/ui/SimpleGlobe"
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { Sun, Moon } from "lucide-react"
 
 export default function Home() {
   const [error, setError] = useState<string | null>(null);
+  const [darkMode, setDarkMode] = useState(true);
+
+  // Apply dark mode class to document
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [darkMode]);
 
   // Error handler for globe initialization
   const handleGlobeError = (err: Error) => {
@@ -13,7 +24,18 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className={`min-h-screen ${darkMode ? 'bg-black' : 'bg-white'}`}>
+      {/* Dark/Light mode toggle button */}
+      <button
+        className={`fixed top-4 right-4 z-50 p-2 rounded-full shadow-lg ${
+          darkMode ? 'bg-gray-800 text-white' : 'bg-white text-gray-800'
+        }`}
+        onClick={() => setDarkMode(!darkMode)}
+        aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
+      >
+        {darkMode ? <Sun size={20} /> : <Moon size={20} />}
+      </button>
+
       {error && (
         <div className="absolute inset-0 flex items-center justify-center z-50 bg-red-50">
           <div className="bg-white p-6 rounded-lg shadow-lg max-w-lg">
@@ -30,7 +52,8 @@ export default function Home() {
             // Use default marker color that works
             markerColor: [251/255, 100/255, 21/255],
             autoRotate: true,
-            autoRotateSpeed: 0.5
+            autoRotateSpeed: 0.5,
+            backgroundColor: darkMode ? "rgba(0, 0, 0, 0)" : "rgba(255, 255, 255, 0)"
           }}
         />
       </div>
