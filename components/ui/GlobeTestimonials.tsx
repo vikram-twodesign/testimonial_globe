@@ -27,59 +27,59 @@ type Testimonial = {
 const testimonials: Testimonial[] = [
   {
     name: "Rahul Sharma",
-    company: "EcoVentures India",
-    location: "Goa, India",
-    testimonial: "TWO Design transformed our brand identity completely. Their sustainable approach matched our values perfectly, and the results have been incredible for our business growth.",
-    coordinates: [15.4989, 73.8278], // Goa, India
-    size: 0.12
+    company: "EcoVentures Chile",
+    location: "Santiago, Chile",
+    testimonial: "TWO Design transformed our brand identity completely. Their sustainable approach matched our values perfectly, and the results have been incredible for our business growth in Santiago.",
+    coordinates: [-33.4489, -70.6693], // Santiago, Chile
+    size: 0.15
   },
   {
     name: "Sarah Johnson",
     company: "Artisan Collective",
-    location: "London, UK",
-    testimonial: "Working with TWO Design was a revelation. They understood our unique vision and translated it into a cohesive brand strategy that resonates with our customers worldwide.",
-    coordinates: [51.5074, -0.1278], // London, UK
-    size: 0.13
+    location: "Sydney, Australia",
+    testimonial: "Working with TWO Design was a revelation. They understood our unique vision for our Sydney-based business and translated it into a cohesive brand strategy that resonates with our customers worldwide.",
+    coordinates: [-33.8688, 151.2093], // Sydney, Australia
+    size: 0.15
   },
   {
     name: "Michael Chang",
     company: "SustainTech Solutions",
-    location: "San Francisco, USA",
-    testimonial: "The team at TWO Design brings a rare combination of creativity and strategic thinking. Their work helped us establish a distinctive presence in a crowded market.",
-    coordinates: [37.7749, -122.4194], // San Francisco, USA
-    size: 0.14
+    location: "Cape Town, South Africa",
+    testimonial: "The team at TWO Design brings a rare combination of creativity and strategic thinking. Their work helped us establish a distinctive presence in Cape Town's competitive market.",
+    coordinates: [-33.9249, 18.4241], // Cape Town, South Africa
+    size: 0.15
   },
   {
     name: "Aisha Patel",
     company: "Mindful Spaces",
-    location: "Mumbai, India",
-    testimonial: "From concept to execution, TWO Design delivered beyond our expectations. Their thoughtful approach to our branding needs resulted in a visual identity that perfectly captures our essence.",
-    coordinates: [19.0760, 72.8777], // Mumbai, India
-    size: 0.13
+    location: "Toronto, Canada",
+    testimonial: "From concept to execution, TWO Design delivered beyond our expectations. Their thoughtful approach to our Toronto-based branding needs resulted in a visual identity that perfectly captures our essence.",
+    coordinates: [43.6532, -79.3832], // Toronto, Canada
+    size: 0.15
   },
   {
     name: "Lars Eriksson",
     company: "Nordic Sustainability",
-    location: "Stockholm, Sweden",
-    testimonial: "TWO Design's ability to blend aesthetic beauty with functional design is outstanding. They've helped us communicate our commitment to sustainability in a visually compelling way.",
-    coordinates: [59.3293, 18.0686], // Stockholm, Sweden
-    size: 0.12
+    location: "Moscow, Russia",
+    testimonial: "TWO Design's ability to blend aesthetic beauty with functional design is outstanding. They've helped us communicate our commitment to sustainability across Moscow in a visually compelling way.",
+    coordinates: [55.7558, 37.6173], // Moscow, Russia
+    size: 0.15
   },
   {
     name: "Elena Rodriguez",
     company: "Solaris Energy",
-    location: "Madrid, Spain",
-    testimonial: "The rebranding work done by TWO Design helped us connect with our customers on a deeper level. Our engagement and conversion metrics have improved significantly since the launch.",
-    coordinates: [40.4168, -3.7038], // Madrid, Spain
-    size: 0.13
+    location: "Jakarta, Indonesia",
+    testimonial: "The rebranding work done by TWO Design helped us connect with our customers in Jakarta on a deeper level. Our engagement and conversion metrics have improved significantly since the launch.",
+    coordinates: [-6.2088, 106.8456], // Jakarta, Indonesia
+    size: 0.15
   },
   {
     name: "Kenji Tanaka",
     company: "Green Future Tech",
-    location: "Tokyo, Japan",
-    testimonial: "TWO Design understood our need to balance traditional values with innovation. The result was a brand identity that feels both timeless and contemporary.",
-    coordinates: [35.6762, 139.6503], // Tokyo, Japan
-    size: 0.14
+    location: "Rio de Janeiro, Brazil",
+    testimonial: "TWO Design understood our need to balance traditional values with innovation in the Brazilian market. The result was a brand identity for our Rio office that feels both timeless and contemporary.",
+    coordinates: [-22.9068, -43.1729], // Rio de Janeiro, Brazil
+    size: 0.15
   }
 ];
 
@@ -167,6 +167,9 @@ export function GlobeTestimonials({
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [showCustomCursor, setShowCustomCursor] = useState(false);
 
+  // Add this near the top of the component with other refs
+  const lastFrameTime = useRef(Date.now());
+
   // Set mounted state when component mounts to prevent hydration errors
   useEffect(() => {
     setMounted(true);
@@ -221,6 +224,11 @@ export function GlobeTestimonials({
   // Render loop for globe
   const onRender = useCallback(
     (state: Record<string, any>) => {
+      // Calculate delta time for smoother animation
+      const now = Date.now();
+      const dt = Math.min(60, now - lastFrameTime.current) / 16.67; // Cap at 60fps equivalent
+      lastFrameTime.current = now;
+
       // Pause rotation if testimonial is selected, but still update state
       if (selectedTestimonial) {
         state.phi = phiRef.current + rRef.current;
@@ -236,7 +244,9 @@ export function GlobeTestimonials({
       
       // Regular rotation when auto-rotate is enabled
       if (!pointerInteracting.current && autoRotate) {
-        phiRef.current += 0.002;
+        // Slow down rotation when hovering over markers
+        const rotationSpeed = isHoveringMarkerRef.current ? 0.0005 * dt : 0.002 * dt;
+        phiRef.current += rotationSpeed;
       }
       
       // Update globe state with current values from refs
@@ -268,17 +278,34 @@ export function GlobeTestimonials({
     const mergedConfig = initialConfig ? { ...config, ...initialConfig } : config;
     let globeConfig: COBEOptions & { focus?: [number, number] } = {...mergedConfig};
     
+    // IMPORTANT: Make sure we're completely overriding any other markers
+    // This ensures only ONE set of markers is shown
+    globeConfig.markers = [];
+    
     // Use testimonial markers from our testimonial data
     globeConfig.markers = testimonials.map(testimonial => ({
       location: testimonial.coordinates,
-      size: testimonial.size * 1.2 // Slightly larger for better visibility with glow
+      size: testimonial.size * 1.1  // Slightly larger markers for better visibility
     }));
     
     // Debug log to verify marker locations match testimonials
+    console.log('======== DEBUGGING MARKER LOCATIONS ========');
     console.log('Testimonial locations loaded:', testimonials.map(t => ({
+      name: t.name,
       location: t.location,
       coordinates: t.coordinates
     })));
+    
+    console.log('Globe config markers:', globeConfig.markers);
+    
+    // Make sure no other markers could be conflicting
+    if (initialConfig) {
+      initialConfig.markers = [];
+    }
+    
+    // Debug global config
+    console.log('Final merged config markers:', globeConfig.markers);
+    console.log('=======================================');
 
     // Add activeLocation to center of view if available
     if (activeLocation) {
@@ -291,14 +318,18 @@ export function GlobeTestimonials({
       width: widthRef.current * 2,
       height: widthRef.current * 2,
       onRender,
+      // Explicitly ensure markers are set correctly
+      markers: globeConfig.markers,
       // We'll handle clicks ourselves, so we don't need onMarkerClick
       onMarkerHover: (markerLocation, markerIndex) => {
-        isHoveringMarkerRef.current = !!markerLocation;
-        setShowCustomCursor(!!markerLocation);
+        // Set the hovering state
+        const isHovering = !!markerLocation;
+        isHoveringMarkerRef.current = isHovering;
+        setShowCustomCursor(isHovering);
         
         if (canvasRef.current) {
-          // Use a more distinctive cursor for markers - hide the default cursor when showing custom one
-          canvasRef.current.style.cursor = markerLocation ? 'none' : 'grab';
+          // Make sure cursor change is visible by forcing the cursor style
+          canvasRef.current.style.cursor = isHovering ? 'pointer' : 'grab';
           
           // Log which marker is being hovered for debugging
           if (markerLocation && markerIndex !== null && markerIndex >= 0 && markerIndex < testimonials.length) {
@@ -369,8 +400,8 @@ export function GlobeTestimonials({
       Math.pow(normalizedY - centerY, 2)
     );
     
-    // Only process clicks reasonably on the globe surface - VERY generous radius
-    if (distFromCenter > 0.6) return; // Click is outside globe (increased from 0.5 to 0.6)
+    // Only process clicks reasonably on the globe surface
+    if (distFromCenter > 0.5) return; // Click is outside globe
     
     // Get current rotation
     const phi = phiRef.current + rRef.current;
@@ -394,8 +425,7 @@ export function GlobeTestimonials({
       if (z3d < -0.2) continue;
       
       // Improved projection factor based on distance from center
-      // Markers farther from center (closer to edge) need a larger projection factor
-      const projectionFactor = 0.45 * (1 + 0.2 * (1 - z3d)); // Adjust projection based on depth
+      const projectionFactor = 0.45 * (1 + 0.2 * (1 - z3d)); 
       
       // Project to 2D space with improved projection
       const projectedX = centerX + (x3d * projectionFactor);
@@ -408,7 +438,6 @@ export function GlobeTestimonials({
       );
       
       // Prioritize markers that are more front-facing (higher z-value)
-      // This gives a slight advantage to markers in the center of view
       const zAdjustedDist = dist * (0.8 + 0.2 * (1 - Math.max(0, z3d)));
       
       // Update if this is the closest marker so far
@@ -418,9 +447,13 @@ export function GlobeTestimonials({
       }
     }
     
-    // MUCH more generous threshold (increased from 0.2 to 0.35) for easier clicking
-    // This will make a much larger area around each marker clickable
-    if (closestTestimonial && closestDist < 0.35) {
+    // Two requirements for selection:
+    // 1. Need to be within threshold distance of a marker
+    // 2. Need to be close enough to the exact marker position
+    if (closestTestimonial && closestDist < 0.20) {
+      // Log for debugging
+      console.log("Selected testimonial:", closestTestimonial.name, "at distance:", closestDist);
+      
       // Animate to the selected marker's location
       const coordinates = closestTestimonial.coordinates;
       setActiveLocation(coordinates);
@@ -430,9 +463,6 @@ export function GlobeTestimonials({
       setTimeout(() => {
         setSelectedTestimonial(closestTestimonial);
       }, 800);
-      
-      // Log for debugging - can be removed in production
-      console.log("Selected testimonial:", closestTestimonial.name, "at distance:", closestDist);
     }
   }, [testimonials]);
 
@@ -449,21 +479,21 @@ export function GlobeTestimonials({
     };
   }, []);
 
-  // Replace the markerHoverCss with simpler styles
+  // Replace the cursorStyles definition with this:
   const cursorStyles = {
     position: 'fixed',
     left: `${mousePosition.x}px`,
     top: `${mousePosition.y}px`,
-    width: '24px',
-    height: '24px',
+    width: '30px',
+    height: '30px',
     borderRadius: '50%',
-    backgroundColor: 'rgba(251, 100, 21, 0.3)',
-    border: '2px solid rgba(251, 100, 21, 0.8)',
+    backgroundColor: 'rgba(251, 100, 21, 0.4)',
+    border: '2px solid rgba(251, 100, 21, 1)',
     transform: 'translate(-50%, -50%)',
     pointerEvents: 'none',
     zIndex: 1000,
-    transition: 'opacity 0.2s ease',
-    boxShadow: '0 0 10px rgba(251, 100, 21, 0.5)',
+    transition: 'all 0.1s ease-out',
+    boxShadow: '0 0 10px rgba(251, 100, 21, 0.8)',
     opacity: showCustomCursor ? 1 : 0,
   } as React.CSSProperties;
 
@@ -495,11 +525,23 @@ export function GlobeTestimonials({
       <div 
         ref={containerRef}
         className="absolute inset-0 mx-auto aspect-[1/1] w-full max-w-[800px]"
-        onPointerDown={(e) => { if (!isHoveringMarkerRef.current) { updatePointerInteraction(e.clientX - pointerInteractionMovement.current); } }}
+        onPointerDown={(e) => { 
+          if (!isHoveringMarkerRef.current) { 
+            updatePointerInteraction(e.clientX - pointerInteractionMovement.current); 
+          } 
+        }}
         onPointerUp={() => updatePointerInteraction(null)}
         onPointerOut={() => updatePointerInteraction(null)}
-        onMouseMove={(e) => updateMovement(e.clientX)}
-        onTouchMove={(e) => e.touches[0] && updateMovement(e.touches[0].clientX)}
+        onMouseMove={(e) => {
+          if (pointerInteracting.current !== null) {
+            updateMovement(e.clientX);
+          }
+        }}
+        onTouchMove={(e) => {
+          if (e.touches[0] && pointerInteracting.current !== null) {
+            updateMovement(e.touches[0].clientX);
+          }
+        }}
       >
         {/* Canvas for globe */}
         <canvas
@@ -515,9 +557,13 @@ export function GlobeTestimonials({
           }}
           onPointerUp={() => updatePointerInteraction(null)}
           onPointerOut={() => updatePointerInteraction(null)}
-          onMouseMove={(e) => updateMovement(e.clientX)}
+          onMouseMove={(e) => {
+            if (pointerInteracting.current !== null) {
+              updateMovement(e.clientX);
+            }
+          }}
           onTouchMove={(e) => {
-            if (e.touches[0]) {
+            if (e.touches[0] && pointerInteracting.current !== null) {
               updateMovement(e.touches[0].clientX);
             }
           }}

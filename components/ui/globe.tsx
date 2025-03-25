@@ -20,16 +20,20 @@ const GLOBE_CONFIG: COBEOptions = {
   markerColor: [251 / 255, 100 / 255, 21 / 255],
   glowColor: [1, 1, 1],
   markers: [
-    { location: [14.5995, 120.9842], size: 0.03 },
-    { location: [19.076, 72.8777], size: 0.1 },
-    { location: [23.8103, 90.4125], size: 0.05 },
-    { location: [30.0444, 31.2357], size: 0.07 },
-    { location: [39.9042, 116.4074], size: 0.08 },
-    { location: [-23.5505, -46.6333], size: 0.1 },
-    { location: [19.4326, -99.1332], size: 0.1 },
-    { location: [40.7128, -74.006], size: 0.1 },
-    { location: [34.6937, 135.5022], size: 0.05 },
-    { location: [41.0082, 28.9784], size: 0.06 },
+    // Santiago, Chile (Rahul Sharma)
+    { location: [-33.4489, -70.6693], size: 0.15 },
+    // Sydney, Australia (Sarah Johnson)
+    { location: [-33.8688, 151.2093], size: 0.15 },
+    // Cape Town, South Africa (Michael Chang)
+    { location: [-33.9249, 18.4241], size: 0.15 },
+    // Toronto, Canada (Aisha Patel)
+    { location: [43.6532, -79.3832], size: 0.15 },
+    // Moscow, Russia (Lars Eriksson)
+    { location: [55.7558, 37.6173], size: 0.15 },
+    // Jakarta, Indonesia (Elena Rodriguez)
+    { location: [-6.2088, 106.8456], size: 0.15 },
+    // Rio de Janeiro, Brazil (Kenji Tanaka)
+    { location: [-22.9068, -43.1729], size: 0.15 },
   ],
 }
 
@@ -82,12 +86,18 @@ export function Globe({
     window.addEventListener("resize", onResize)
     onResize()
 
-    const globe = createGlobe(canvasRef.current!, {
+    // Create a new config that won't conflict with other components
+    const globeConfig = {
       ...config,
       width: width * 2,
       height: width * 2,
       onRender,
-    })
+    };
+
+    // In case this component is used standalone (without GlobeTestimonials)
+    // we'll keep the markers from the config
+    
+    const globe = createGlobe(canvasRef.current!, globeConfig);
 
     setTimeout(() => (canvasRef.current!.style.opacity = "1"))
     return () => globe.destroy()
@@ -106,6 +116,17 @@ export function Globe({
         )}
         ref={canvasRef}
         style={{ cursor: 'grab', zIndex: 5 }}
+        onPointerDown={(e) =>
+          updatePointerInteraction(
+            e.clientX - pointerInteractionMovement.current,
+          )
+        }
+        onPointerUp={() => updatePointerInteraction(null)}
+        onPointerOut={() => updatePointerInteraction(null)}
+        onMouseMove={(e) => updateMovement(e.clientX)}
+        onTouchMove={(e) =>
+          e.touches[0] && updateMovement(e.touches[0].clientX)
+        }
       />
     </div>
   )
