@@ -24,7 +24,7 @@ export default function Home() {
   };
 
   return (
-    <div className={`min-h-screen ${darkMode ? 'bg-black' : 'bg-white'}`}>
+    <div className={`min-h-screen ${darkMode ? 'bg-gray-900' : 'bg-gray-50'}`}>
       {/* Dark/Light mode toggle button */}
       <button
         className={`fixed top-4 right-4 z-50 p-2 rounded-full shadow-lg ${
@@ -53,7 +53,13 @@ export default function Home() {
             markerColor: [251/255, 100/255, 21/255],
             autoRotate: true,
             autoRotateSpeed: 0.5,
-            backgroundColor: darkMode ? "rgba(0, 0, 0, 0)" : "rgba(255, 255, 255, 0)"
+            backgroundColor: darkMode ? "rgba(10, 15, 30, 0.2)" : "rgba(255, 255, 255, 0.1)",
+            // Use appropriate textures for each mode
+            globeImageUrl: darkMode 
+              ? '//unpkg.com/three-globe/example/img/earth-night.jpg' 
+              : '//unpkg.com/three-globe/example/img/earth-blue-marble.jpg',
+            // Make sure bump image works properly in both modes
+            bumpImageUrl: '//unpkg.com/three-globe/example/img/earth-topology.png'
           }}
         />
       </div>
