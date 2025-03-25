@@ -1,6 +1,6 @@
 "use client"
 
-import { GlobeGL } from "@/components/ui/GlobeGL"
+import { SimpleGlobe } from "@/components/ui/SimpleGlobe"
 
 export default function GlobeDemoPage() {
   return (
@@ -11,7 +11,7 @@ export default function GlobeDemoPage() {
       </header>
       
       <main className="flex-1 relative">
-        <GlobeGL />
+        <SimpleGlobe />
       </main>
     </div>
   )

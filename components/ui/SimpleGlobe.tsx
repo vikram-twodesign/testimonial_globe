@@ -374,6 +374,19 @@ export function SimpleGlobe({
     setDarkMode(!darkMode);
   };
 
+  // Effect to update globe background color when dark mode changes
+  useEffect(() => {
+    if (!mounted || !globeReady || !globeEl.current) return;
+    
+    try {
+      // Update the globe background based on dark mode state
+      // This ensures the globe itself maintains transparency in dark mode
+      globeEl.current.backgroundColor("rgba(0, 0, 0, 0)");
+    } catch (err) {
+      console.error("Error updating globe background for dark mode:", err);
+    }
+  }, [darkMode, mounted, globeReady]);
+
   return (
     <div className={cn(
       "relative w-full h-full", 
