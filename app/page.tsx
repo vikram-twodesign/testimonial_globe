@@ -8,14 +8,14 @@ export default function Home() {
   const [error, setError] = useState<string | null>(null);
   const [darkMode, setDarkMode] = useState(true);
 
-  // Apply dark mode class to document
-  useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  }, [darkMode]);
+  // Generate random stars
+  const starCount = 100;
+  const stars = Array.from({ length: starCount }, () => ({
+    top: `${Math.random() * 100}%`,
+    left: `${Math.random() * 100}%`,
+    size: `${Math.random() * 2 + 1}px`,
+    opacity: Math.random() * 0.5 + 0.1,
+  }));
 
   // Error handler for globe initialization
   const handleGlobeError = (err: Error) => {
@@ -24,11 +24,27 @@ export default function Home() {
   };
 
   return (
-    <div className={`min-h-screen ${darkMode ? 'bg-gray-900' : 'bg-gray-50'}`}>
+    <div className={`min-h-screen relative ${darkMode ? 'bg-black' : 'bg-white'}`}>
+      {/* Stars */}
+      {stars.map((star, i) => (
+        <div
+          key={i}
+          className="absolute rounded-full"
+          style={{
+            top: star.top,
+            left: star.left,
+            width: star.size,
+            height: star.size,
+            opacity: star.opacity,
+            backgroundColor: darkMode ? 'white' : 'black',
+          }}
+        />
+      ))}
+
       {/* Dark/Light mode toggle button */}
       <button
         className={`fixed top-4 right-4 z-50 p-2 rounded-full shadow-lg ${
-          darkMode ? 'bg-gray-800 text-white' : 'bg-white text-gray-800'
+          darkMode ? 'bg-gray-800 text-white' : 'bg-white text-gray-800 border border-gray-200'
         }`}
         onClick={() => setDarkMode(!darkMode)}
         aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
@@ -49,17 +65,12 @@ export default function Home() {
         <SimpleGlobe 
           onError={handleGlobeError}
           config={{
-            // Use default marker color that works
             markerColor: [251/255, 100/255, 21/255],
             autoRotate: true,
             autoRotateSpeed: 0.5,
-            backgroundColor: darkMode ? "rgba(10, 15, 30, 0.2)" : "rgba(255, 255, 255, 0.1)",
-            // Use appropriate textures for each mode
-            globeImageUrl: darkMode 
-              ? '//unpkg.com/three-globe/example/img/earth-night.jpg' 
-              : '//unpkg.com/three-globe/example/img/earth-blue-marble.jpg',
-            // Make sure bump image works properly in both modes
-            bumpImageUrl: '//unpkg.com/three-globe/example/img/earth-topology.png'
+            // Keep globe appearance consistent across modes
+            backgroundColor: "rgba(0, 0, 0, 0)",
+            globeImageUrl: '//unpkg.com/three-globe/example/img/earth-blue-marble.jpg'
           }}
         />
       </div>
