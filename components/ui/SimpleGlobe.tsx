@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState, useCallback } from "react"
 import { cn } from "@/lib/utils"
-import { X } from "lucide-react"
+import { X, Moon, Sun } from "lucide-react"
 
 // Type for the Globe instance
 type GlobeInstance = any;
@@ -120,6 +120,7 @@ export function SimpleGlobe({
   const [mounted, setMounted] = useState(false);
   const [globeReady, setGlobeReady] = useState(false);
   const [selectedTestimonial, setSelectedTestimonial] = useState<Testimonial | null>(null);
+  const [darkMode, setDarkMode] = useState(false);
   const globeEl = useRef<GlobeInstance | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   
@@ -269,7 +270,7 @@ export function SimpleGlobe({
         .pointLng((d: GlobeMarker) => d.location[1])
         .pointColor(() => markerColorString)
         .pointRadius(1.2) // Larger radius for better clickability
-        .pointAltitude(0.06) // Higher altitude to be more visible
+        .pointAltitude(0.02) // Reduced height for markers
         .onPointHover((point: GlobeMarker | null) => {
           if (globeEl.current && globeEl.current.controls) {
             // Slow down rotation when hovering over a point
@@ -368,24 +369,66 @@ export function SimpleGlobe({
     return <div className={cn("relative w-full h-full", className)} />;
   }
 
+  // Toggle dark mode
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+  };
+
   return (
-    <div className="relative w-full h-full">
+    <div className={cn(
+      "relative w-full h-full", 
+      darkMode ? "bg-black" : "bg-white",
+      className
+    )}>
+      {/* Stars background */}
+      <div className="absolute inset-0 overflow-hidden">
+        {Array.from({ length: 150 }).map((_, i) => (
+          <div 
+            key={i}
+            className={cn(
+              "absolute rounded-full",
+              darkMode ? "bg-white/40" : "bg-black/40"
+            )}
+            style={{
+              width: `${Math.random() * 3 + 1}px`,
+              height: `${Math.random() * 3 + 1}px`,
+              top: `${Math.random() * 100}%`,
+              left: `${Math.random() * 100}%`,
+              opacity: Math.random() * 0.8 + 0.2
+            }}
+          />
+        ))}
+      </div>
+      
       <div 
         ref={containerRef}
-        className={cn(
-          "relative mx-auto w-full h-full",
-          className
-        )}
+        className="relative mx-auto w-full h-full"
       >
         {/* Globe element will be dynamically added to this container */}
       </div>
+      
+      {/* Mode toggle button */}
+      <button
+        onClick={toggleDarkMode}
+        className="absolute top-4 right-4 z-10 p-2.5 rounded-full transition-colors"
+        style={{
+          backgroundColor: darkMode ? 'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.1)'
+        }}
+        aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
+      >
+        {darkMode ? (
+          <Sun size={20} className="text-white" />
+        ) : (
+          <Moon size={20} className="text-black" />
+        )}
+      </button>
       
       {/* Loading indicator */}
       {mounted && !globeReady && (
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="text-center">
             <div className="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full mx-auto animate-spin"></div>
-            <p className="mt-2 text-gray-800 dark:text-gray-200">Loading globe...</p>
+            <p className={cn("mt-2", darkMode ? "text-white" : "text-gray-800")}>Loading globe...</p>
           </div>
         </div>
       )}
@@ -393,12 +436,12 @@ export function SimpleGlobe({
       {/* Testimonial Popup */}
       {selectedTestimonial && (
         <div className="fixed inset-0 flex items-center justify-center z-30 bg-black/40">
-          <div className="bg-white/95 dark:bg-gray-900/95 p-8 rounded-xl max-w-md text-gray-800 dark:text-gray-100 shadow-2xl relative 
+          <div className="bg-white/95 p-8 rounded-xl max-w-md text-gray-800 shadow-2xl relative 
                          transition-all duration-500 animate-in fade-in zoom-in-95
-                         border border-gray-200 dark:border-gray-700 backdrop-blur-sm">
+                         border border-gray-200 backdrop-blur-sm">
             <button 
-              className="absolute top-3 right-3 p-1.5 text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white
-                        hover:bg-gray-200/50 dark:hover:bg-gray-700/50 rounded-full 
+              className="absolute top-3 right-3 p-1.5 text-gray-500 hover:text-gray-800
+                        hover:bg-gray-200/50 rounded-full 
                         transition-colors"
               onClick={() => {
                 setSelectedTestimonial(null);
@@ -418,15 +461,18 @@ export function SimpleGlobe({
             <div className="mb-2 pb-1 inline-block border-b-2 border-blue-500/50">
               <h3 className="text-xl font-bold pr-6">{selectedTestimonial.name}</h3>
             </div>
-            <p className="text-gray-600 dark:text-gray-300 italic font-medium text-sm">{selectedTestimonial.company}</p>
-            <p className="text-blue-600 dark:text-blue-400 text-xs mb-4">{selectedTestimonial.location}</p>
-            <p className="text-gray-700 dark:text-gray-200 leading-relaxed text-sm">"{selectedTestimonial.testimonial}"</p>
+            <p className="text-gray-600 italic font-medium text-sm">{selectedTestimonial.company}</p>
+            <p className="text-blue-600 text-xs mb-4">{selectedTestimonial.location}</p>
+            <p className="text-gray-700 leading-relaxed text-sm">"{selectedTestimonial.testimonial}"</p>
           </div>
         </div>
       )}
       
       {/* Instruction text */}
-      <div className="absolute bottom-5 left-0 right-0 text-center text-gray-800 dark:text-gray-200 text-sm opacity-70">
+      <div className={cn(
+        "absolute bottom-5 left-0 right-0 text-center text-sm opacity-70",
+        darkMode ? "text-white" : "text-gray-800"
+      )}>
         Drag to rotate the globe. Click on markers to view testimonials.
       </div>
     </div>
