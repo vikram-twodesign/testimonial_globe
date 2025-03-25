@@ -124,6 +124,11 @@ export function SimpleGlobe({
   const globeEl = useRef<GlobeInstance | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   
+  // Toggle dark mode function - define before any useEffect
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+  };
+  
   // Set mounted state to prevent hydration errors
   useEffect(() => {
     setMounted(true);
@@ -236,6 +241,19 @@ export function SimpleGlobe({
       console.error("Error setting zoom limits:", err);
     }
   }, [mounted, globeReady]);
+
+  // Effect to update globe background color when dark mode changes
+  useEffect(() => {
+    if (!mounted || !globeReady || !globeEl.current) return;
+    
+    try {
+      // Update the globe background based on dark mode state
+      // This ensures the globe itself maintains transparency in dark mode
+      globeEl.current.backgroundColor("rgba(0, 0, 0, 0)");
+    } catch (err) {
+      console.error("Error updating globe background for dark mode:", err);
+    }
+  }, [darkMode, mounted, globeReady]);
 
   // Initialize and configure globe
   useEffect(() => {
@@ -368,24 +386,6 @@ export function SimpleGlobe({
   if (!mounted) {
     return <div className={cn("relative w-full h-full", className)} />;
   }
-
-  // Toggle dark mode
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-  };
-
-  // Effect to update globe background color when dark mode changes
-  useEffect(() => {
-    if (!mounted || !globeReady || !globeEl.current) return;
-    
-    try {
-      // Update the globe background based on dark mode state
-      // This ensures the globe itself maintains transparency in dark mode
-      globeEl.current.backgroundColor("rgba(0, 0, 0, 0)");
-    } catch (err) {
-      console.error("Error updating globe background for dark mode:", err);
-    }
-  }, [darkMode, mounted, globeReady]);
 
   return (
     <div className={cn(
