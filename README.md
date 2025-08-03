@@ -1,6 +1,26 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌍 Testimonial Globe
 
-## Getting Started
+An interactive 3D globe showcasing professional testimonials from colleagues and collaborators around the world. Built with Next.js, TypeScript, and globe.gl.
+
+![Live Demo](https://testimonial-globe.vercel.app)
+
+## ✨ Features
+
+- **Interactive 3D Globe**: Smooth, draggable globe with accurate geographic positioning
+- **Real Testimonials**: 17 authentic testimonials from professional network
+- **Multi-Testimonial Navigation**: Elegant popup system for locations with multiple testimonials
+- **Visual Distinction**: Larger, brighter markers indicate multiple testimonials at a location
+- **Responsive Design**: Works beautifully on desktop and mobile devices
+- **Dark/Light Mode**: Toggle between dark and light themes
+- **TypeScript**: Fully typed for better development experience
+
+## 🎯 Key Highlights
+
+- **Chicago Hub**: 5 testimonials from Chicago-based colleagues with seamless navigation
+- **Global Reach**: Testimonials from US (Chicago, New York, Colorado, Nashville, Indiana, San Francisco, Seattle, Los Angeles) and international locations (Amsterdam, Goa India, London UK, Oaxaca Mexico, France)
+- **Professional Network**: Features testimonials from design leaders, developers, executives, and entrepreneurs
+
+## 🚀 Getting Started
 
 First, run the development server:
 
@@ -16,21 +36,60 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🎮 How to Use
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. **Rotate the Globe**: Click and drag to explore different regions
+2. **View Testimonials**: Click on any marker to view testimonials
+3. **Navigate Multiple Testimonials**: Use the arrow buttons (← →) when multiple testimonials exist at one location
+4. **Toggle Theme**: Use the sun/moon button to switch between light and dark modes
 
-## Learn More
+## 🛠️ Tech Stack
 
-To learn more about Next.js, take a look at the following resources:
+- **Framework**: Next.js 14 with App Router
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS + Shadcn UI
+- **3D Globe**: globe.gl & COBE
+- **Icons**: Lucide React
+- **Deployment**: Vercel
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📁 Project Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+├── app/                     # Next.js app directory
+│   ├── globe/              # Main globe page
+│   ├── simple-globe-demo/  # Alternative globe implementation
+│   └── layout.tsx          # Root layout
+├── components/ui/          # Reusable UI components
+│   ├── GlobeTestimonials.tsx  # Main testimonial globe (COBE)
+│   ├── SimpleGlobe.tsx        # Alternative globe (globe.gl)
+│   └── globe.tsx              # Base globe component
+├── docs/                   # Documentation
+│   └── testimonials.md     # Source testimonials data
+└── lib/                    # Utility functions
+```
 
-## Deploy on Vercel
+## 🌟 Testimonial Features
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Authentic Content**: Real testimonials from professional collaborators
+- **Geographic Accuracy**: Precise coordinate mapping for each location
+- **Smart Clustering**: Multiple testimonials at same location handled elegantly
+- **Accessible Navigation**: Keyboard-friendly with proper ARIA labels
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🎨 Design Philosophy
+
+- **Clean & Minimal**: Focus on content without visual clutter
+- **Intuitive UX**: Clear visual cues for user interactions
+- **Performance First**: Optimized loading and smooth animations
+- **Responsive**: Beautiful experience across all device sizes
+
+## 🔗 Live Demo
+
+Visit the live application: [testimonial-globe.vercel.app](https://testimonial-globe.vercel.app)
+
+## 📝 License
+
+MIT License - feel free to use this project as inspiration for your own testimonial showcase!
+
+---
+
+Built with ❤️ by [Vikram Bhalla](https://github.com/vikram-twodesign)
