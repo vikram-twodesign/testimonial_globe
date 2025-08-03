@@ -38,61 +38,160 @@ type Testimonial = {
 // Define our testimonials with accurate coordinates
 const testimonials: Testimonial[] = [
   {
-    name: "Rahul Sharma",
-    company: "EcoVentures Chile",
-    location: "Santiago, Chile",
-    testimonial: "Do It Better Design transformed our brand identity completely. Their sustainable approach matched our values perfectly, and the results have been incredible for our business growth in Santiago.",
-    coordinates: [-33.4489, -70.6693], // Santiago, Chile
+    name: "Hannah Mowrey",
+    company: "Studio Partner",
+    location: "Chicago",
+    testimonial: "Nicolette is strategic and creative and a process-driven professional who is also kind and considerate of others, which makes her the kind of brain and heart combination anyone would be lucky to have on their team.",
+    coordinates: [41.8781, -87.6298], // Chicago
   },
   {
-    name: "Sarah Johnson",
-    company: "Artisan Collective",
-    location: "Sydney, Australia",
-    testimonial: "Working with Do It Better Design was a revelation. They understood our unique vision for our Sydney-based business and translated it into a cohesive brand strategy that resonates with our customers worldwide.",
-    coordinates: [-33.8688, 151.2093], // Sydney, Australia
+    name: "Mary Foyder",
+    company: "Design Leader",
+    location: "Chicago",
+    testimonial: "Nicolette is a powerhouse of brains and can-do. She tells things like they are! She is empathetic and passionate and makes things happen. I will do a happy dance if I get the chance to work with Nicolette again.",
+    coordinates: [41.8781, -87.6298], // Chicago
   },
   {
-    name: "Michael Chang",
-    company: "SustainTech Solutions",
-    location: "Cape Town, South Africa",
-    testimonial: "The team at Do It Better Design brings a rare combination of creativity and strategic thinking. Their work helped us establish a distinctive presence in Cape Town's competitive market.",
-    coordinates: [-33.9249, 18.4241], // Cape Town, South Africa
+    name: "Lyndon Valicenti",
+    company: "Systems Designer",
+    location: "Chicago",
+    testimonial: "Nicolette is a magnetic leader with poise and confidence that I admire and want to be around. She is a real one!",
+    coordinates: [41.8781, -87.6298], // Chicago
   },
   {
-    name: "Aisha Patel",
-    company: "Mindful Spaces",
-    location: "Toronto, Canada",
-    testimonial: "From concept to execution, Do It Better Design delivered beyond our expectations. Their thoughtful approach to our Toronto-based branding needs resulted in a visual identity that perfectly captures our essence.",
-    coordinates: [43.6532, -79.3832], // Toronto, Canada
+    name: "Judy Brennan",
+    company: "PR Executive",
+    location: "Chicago",
+    testimonial: "Nicolette is smart and kind and fun! From strategy to design, project management to copy, the thread running through it all is her creativity. She pulls off miracles on a shoestring budget. I'd work with Nicolette every chance I could.",
+    coordinates: [41.8781, -87.6298], // Chicago
   },
   {
-    name: "Lars Eriksson",
-    company: "Nordic Sustainability",
-    location: "Moscow, Russia",
-    testimonial: "Do It Better Design's ability to blend aesthetic beauty with functional design is outstanding. They've helped us communicate our commitment to sustainability across Moscow in a visually compelling way.",
-    coordinates: [55.7558, 37.6173], // Moscow, Russia
+    name: "Anthena Gore",
+    company: "Environmental Justice Executive",
+    location: "Chicago",
+    testimonial: "Nicolette has a distinct and effective approach for seeding important strategic, yet reflective, conversations. It's a good balance of 'we need to be intentional' and 'we need to do something impactful.'",
+    coordinates: [41.8781, -87.6298], // Chicago
   },
   {
-    name: "Elena Rodriguez",
-    company: "Solaris Energy",
-    location: "Jakarta, Indonesia",
-    testimonial: "The rebranding work done by Do It Better Design helped us connect with our customers in Jakarta on a deeper level. Our engagement and conversion metrics have improved significantly since the launch.",
-    coordinates: [-6.2088, 106.8456], // Jakarta, Indonesia
+    name: "Raphael Cala",
+    company: "Graphic Designer",
+    location: "New York",
+    testimonial: "Nicolette is able to balance big-picture and fine detail. While she gets into the weeds of managing individual deliverables, it always stems from a broader vision or strategy.",
+    coordinates: [40.7128, -74.0060], // New York
   },
   {
-    name: "Kenji Tanaka",
-    company: "Green Future Tech",
-    location: "Rio de Janeiro, Brazil",
-    testimonial: "Do It Better Design understood our need to balance traditional values with innovation in the Brazilian market. The result was a brand identity for our Rio office that feels both timeless and contemporary.",
-    coordinates: [-22.9068, -43.1729], // Rio de Janeiro, Brazil
+    name: "Kabira Ferrell",
+    company: "Communications Executive",
+    location: "Colorado",
+    testimonial: "It's a rare combination to find someone who is a strategic thinker and marketer, an intuitive designer, and effectively executes while building a team around a mission-driven culture. This is Nicolette. She is curious, kind, empathetic and driven. Not satisfied with good, Nicolette aims for--and delivers--greatness. Her independent thinking and the calibre of her intellect pushed our work, and me, to be better. I'd hire her again in a heartbeat!",
+    coordinates: [39.5501, -105.7821], // Colorado (Denver area)
+  },
+  {
+    name: "Dylan Wells",
+    company: "Graphic Designer",
+    location: "Nashville",
+    testimonial: "Nicolette excels at forming a complete project vision from the start and is able to succinctly and confidently execute from development to launch with an inimitable ease.",
+    coordinates: [36.1627, -86.7816], // Nashville
+  },
+  {
+    name: "Rebecca Stamm",
+    company: "Materials Researcher",
+    location: "Indiana",
+    testimonial: "Nicolette brings great energy and enthusiasm to our work. She is not only great at her job but also fun to work with. She clearly cares about the work and about the team as people.",
+    coordinates: [39.7910, -86.1480], // Indiana (Indianapolis area)
+  },
+  {
+    name: "Priya Premchandran",
+    company: "Built Environment Expert",
+    location: "San Francisco",
+    testimonial: "Nicolette is an incredibly inclusive leader who respects and welcomes diverse perspectives. She believes in providing agency to others and empowering them to do their best work while providing necessary support. A great collaborator who is always focused on achieving the best outcome.",
+    coordinates: [37.7749, -122.4194], // San Francisco
+  },
+  {
+    name: "Aaron Grossbard",
+    company: "Digital Marketer",
+    location: "Seattle",
+    testimonial: "Nicolette is easily one of the best points of contact I've worked with in my professional career.",
+    coordinates: [47.6062, -122.3321], // Seattle
+  },
+  {
+    name: "Sagar Pujara",
+    company: "Entrepreneur",
+    location: "Los Angeles",
+    testimonial: "Nicolette is a natural leader with an impressive combination of organizational skills, emotional intelligence, and a knack for demystifying complex problems.",
+    coordinates: [34.0522, -118.2437], // Los Angeles
+  },
+  {
+    name: "Nathalie Bouche",
+    company: "Sales Leader",
+    location: "France",
+    testimonial: "On top of being a marketing and communications expert, Nicolette is a fantastic team player and her communication and organisational skills allowed her to lead our senior leadership meetings with high efficiency and results. I highly recommend Nicolette--her future teams will be very lucky!",
+    coordinates: [46.2276, 2.2137], // France (central)
+  },
+  {
+    name: "Tamara Nameroff",
+    company: "Energy Transition Expert",
+    location: "Amsterdam, Netherlands",
+    testimonial: "Nicolette is a dream to work with. She is creative and always on the hunt for improvement opportunities that can be delivered in the time available. She is highly organized and follows through on her commitments. You will love to have her on your team!",
+    coordinates: [52.3676, 4.9041], // Amsterdam, Netherlands
+  },
+  {
+    name: "Vikram Bhalla",
+    company: "Studio Owner",
+    location: "Goa, India",
+    testimonial: "Nicolette leads by example. She is personally invested in the team's efficiency and productivity and manages to balance being the boss and being the friend. Our entire team had immense respect for her. It was a privilege working with--and learning from--Nicolette. I'd jump at the chance again.",
+    coordinates: [15.2993, 74.1240], // Goa, India
+  },
+  {
+    name: "Georgie Davis",
+    company: "Impact Communications Executive",
+    location: "Outside London, UK",
+    testimonial: "Nicolette is a standout leader with a rare blend of sharp analytical insight, big-picture thinking and abundant creativity. She is inclusive then decisive, delivering clarity and driving change. I've seen her navigate politically challenging leadership dynamics with diplomacy and grace.",
+    coordinates: [51.5074, -0.1278], // London, UK
+  },
+  {
+    name: "Chris Markel",
+    company: "Digital Marketer",
+    location: "Oaxaca, Mexico",
+    testimonial: "Nicolette is organized, pragmatic, has a strong bias for action, listens critically, and processes information quickly and effectively. She has a unique ability to break down complex concepts into digestible chunks for anyone on the team to quickly get up to speed and make impactful contributions.",
+    coordinates: [17.0732, -96.7266], // Oaxaca, Mexico
   }
 ];
 
-// Convert testimonials to markers
-const DEFAULT_MARKERS: GlobeMarker[] = testimonials.map(testimonial => ({
-  location: testimonial.coordinates,
-  size: 0.15
-}));
+// Helper function to count testimonials at each unique location
+const getTestimonialCountByLocation = () => {
+  const locationCounts = new Map<string, number>();
+  testimonials.forEach(testimonial => {
+    const key = `${testimonial.coordinates[0]},${testimonial.coordinates[1]}`;
+    locationCounts.set(key, (locationCounts.get(key) || 0) + 1);
+  });
+  return locationCounts;
+};
+
+// Convert testimonials to markers with enhanced visual cues for multiple testimonials
+const createMarkersFromTestimonials = () => {
+  const locationCounts = getTestimonialCountByLocation();
+  const processedLocations = new Set<string>();
+  
+  return testimonials.reduce((markers: GlobeMarker[], testimonial) => {
+    const locationKey = `${testimonial.coordinates[0]},${testimonial.coordinates[1]}`;
+    
+    // Only add one marker per unique location
+    if (!processedLocations.has(locationKey)) {
+      processedLocations.add(locationKey);
+      const count = locationCounts.get(locationKey) || 1;
+      
+      markers.push({
+        location: testimonial.coordinates,
+        size: count > 1 ? 0.20 : 0.15 // Larger size for multiple testimonials
+      });
+    }
+    
+    return markers;
+  }, []);
+};
+
+const DEFAULT_MARKERS: GlobeMarker[] = createMarkersFromTestimonials();
 
 // Default configuration
 const DEFAULT_CONFIG: GlobeConfig = {
@@ -119,7 +218,8 @@ export function SimpleGlobe({
 }) {
   const [mounted, setMounted] = useState(false);
   const [globeReady, setGlobeReady] = useState(false);
-  const [selectedTestimonial, setSelectedTestimonial] = useState<Testimonial | null>(null);
+  const [selectedTestimonials, setSelectedTestimonials] = useState<Testimonial[]>([]);
+  const [currentTestimonialIndex, setCurrentTestimonialIndex] = useState(0);
   const [darkMode, setDarkMode] = useState(false);
   const globeEl = useRef<GlobeInstance | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -190,21 +290,21 @@ export function SimpleGlobe({
     };
   }, [mounted, onError]);
 
-  // Find testimonial by coordinates
-  const findTestimonialByCoordinates = useCallback((lat: number, lng: number): Testimonial | null => {
-    return testimonials.find(t => 
+  // Find all testimonials by coordinates
+  const findTestimonialsByCoordinates = useCallback((lat: number, lng: number): Testimonial[] => {
+    return testimonials.filter(t => 
       Math.abs(t.coordinates[0] - lat) < 0.001 && 
       Math.abs(t.coordinates[1] - lng) < 0.001
-    ) || null;
+    );
   }, []);
 
   // Handle point click
   const handlePointClick = useCallback((point: GlobeMarker) => {
     if (!globeEl.current) return;
     
-    // Find the testimonial for this point
-    const testimonial = findTestimonialByCoordinates(point.location[0], point.location[1]);
-    if (!testimonial) return;
+    // Find all testimonials for this point
+    const testimonialsAtLocation = findTestimonialsByCoordinates(point.location[0], point.location[1]);
+    if (testimonialsAtLocation.length === 0) return;
     
     // Stop auto-rotation when a point is clicked
     if (globeEl.current.controls()) {
@@ -214,18 +314,36 @@ export function SimpleGlobe({
     // Animate to point position - using a higher altitude to prevent cropping
     globeEl.current.pointOfView(
       {
-        lat: testimonial.coordinates[0],
-        lng: testimonial.coordinates[1],
+        lat: testimonialsAtLocation[0].coordinates[0],
+        lng: testimonialsAtLocation[0].coordinates[1],
         altitude: 2.0 // Higher altitude to prevent cropping
       },
       1000 // animation duration in ms
     );
     
-    // Show the testimonial after a brief delay
+    // Show the testimonials after a brief delay
     setTimeout(() => {
-      setSelectedTestimonial(testimonial);
+      setSelectedTestimonials(testimonialsAtLocation);
+      setCurrentTestimonialIndex(0); // Start with the first testimonial
     }, 1000);
-  }, [findTestimonialByCoordinates]);
+  }, [findTestimonialsByCoordinates]);
+
+  // Navigation functions for multiple testimonials
+  const goToNextTestimonial = useCallback(() => {
+    if (selectedTestimonials.length > 1) {
+      setCurrentTestimonialIndex((prev) => 
+        prev < selectedTestimonials.length - 1 ? prev + 1 : 0
+      );
+    }
+  }, [selectedTestimonials.length]);
+
+  const goToPreviousTestimonial = useCallback(() => {
+    if (selectedTestimonials.length > 1) {
+      setCurrentTestimonialIndex((prev) => 
+        prev > 0 ? prev - 1 : selectedTestimonials.length - 1
+      );
+    }
+  }, [selectedTestimonials.length]);
 
   // Add a zoom limit to prevent zooming too close
   useEffect(() => {
@@ -286,8 +404,26 @@ export function SimpleGlobe({
         .pointsData(markers)
         .pointLat((d: GlobeMarker) => d.location[0])
         .pointLng((d: GlobeMarker) => d.location[1])
-        .pointColor(() => markerColorString)
-        .pointRadius(1.2) // Larger radius for better clickability
+        .pointColor((d: GlobeMarker) => {
+          // Different colors for single vs multiple testimonials
+          const testimonialsAtLocation = testimonials.filter(t => 
+            Math.abs(t.coordinates[0] - d.location[0]) < 0.001 && 
+            Math.abs(t.coordinates[1] - d.location[1]) < 0.001
+          );
+          const isMultiple = testimonialsAtLocation.length > 1;
+          
+          if (isMultiple) {
+            // Slightly different color for multiple testimonials (more vibrant orange)
+            return 'rgba(255, 120, 40, 1)';
+          } else {
+            // Original color for single testimonials
+            return markerColorString;
+          }
+        })
+        .pointRadius((d: GlobeMarker) => {
+          // Dynamic radius based on testimonial count
+          return d.size > 0.15 ? 1.5 : 1.2;
+        })
         .pointAltitude(0.02) // Reduced height for markers
         .onPointHover((point: GlobeMarker | null) => {
           if (globeEl.current && globeEl.current.controls) {
@@ -447,7 +583,7 @@ export function SimpleGlobe({
       )}
       
       {/* Testimonial Popup */}
-      {selectedTestimonial && (
+      {selectedTestimonials.length > 0 && (
         <div className="fixed inset-0 flex items-center justify-center z-30 bg-black/40">
           <div className="bg-white/95 p-8 rounded-xl max-w-md text-gray-800 shadow-2xl relative 
                          transition-all duration-500 animate-in fade-in zoom-in-95
@@ -457,7 +593,8 @@ export function SimpleGlobe({
                         hover:bg-gray-200/50 rounded-full 
                         transition-colors"
               onClick={() => {
-                setSelectedTestimonial(null);
+                setSelectedTestimonials([]);
+                setCurrentTestimonialIndex(0);
                 // Resume auto-rotation after closing testimonial
                 setTimeout(() => {
                   if (globeEl.current && globeEl.current.controls()) {
@@ -471,12 +608,36 @@ export function SimpleGlobe({
             >
               <X size={18} />
             </button>
+            
+            {/* Show testimonial count and navigation if multiple testimonials */}
+            {selectedTestimonials.length > 1 && (
+              <div className="mb-3 flex items-center justify-between">
+                <button
+                  onClick={goToPreviousTestimonial}
+                  className="p-1.5 text-gray-500 hover:text-gray-800 hover:bg-gray-200/50 rounded-full transition-colors"
+                  aria-label="Previous testimonial"
+                >
+                  ←
+                </button>
+                <span className="text-xs text-gray-500 font-medium">
+                  {currentTestimonialIndex + 1} of {selectedTestimonials.length}
+                </span>
+                <button
+                  onClick={goToNextTestimonial}
+                  className="p-1.5 text-gray-500 hover:text-gray-800 hover:bg-gray-200/50 rounded-full transition-colors"
+                  aria-label="Next testimonial"
+                >
+                  →
+                </button>
+              </div>
+            )}
+            
             <div className="mb-2 pb-1 inline-block border-b-2 border-blue-500/50">
-              <h3 className="text-xl font-bold pr-6">{selectedTestimonial.name}</h3>
+              <h3 className="text-xl font-bold pr-6">{selectedTestimonials[currentTestimonialIndex].name}</h3>
             </div>
-            <p className="text-gray-600 italic font-medium text-sm">{selectedTestimonial.company}</p>
-            <p className="text-blue-600 text-xs mb-4">{selectedTestimonial.location}</p>
-            <p className="text-gray-700 leading-relaxed text-sm">"{selectedTestimonial.testimonial}"</p>
+            <p className="text-gray-600 italic font-medium text-sm">{selectedTestimonials[currentTestimonialIndex].company}</p>
+            <p className="text-blue-600 text-xs mb-4">{selectedTestimonials[currentTestimonialIndex].location}</p>
+            <p className="text-gray-700 leading-relaxed text-sm">"{selectedTestimonials[currentTestimonialIndex].testimonial}"</p>
           </div>
         </div>
       )}
@@ -486,7 +647,8 @@ export function SimpleGlobe({
         "absolute bottom-5 left-0 right-0 text-center text-sm opacity-70",
         darkMode ? "text-white" : "text-gray-800"
       )}>
-        Drag to rotate the globe. Click on markers to view testimonials.
+        Drag to rotate the globe. Click on markers to view testimonials.<br />
+        <span className="text-xs opacity-60">Larger, brighter markers have multiple testimonials.</span>
       </div>
     </div>
   );

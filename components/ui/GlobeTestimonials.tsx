@@ -26,59 +26,75 @@ type Testimonial = {
 // Define our testimonials with accurate coordinates
 const testimonials: Testimonial[] = [
   {
-    name: "Rahul Sharma",
-    company: "EcoVentures Chile",
-    location: "Santiago, Chile",
-    testimonial: "TWO Design transformed our brand identity completely. Their sustainable approach matched our values perfectly, and the results have been incredible for our business growth in Santiago.",
-    coordinates: [-33.4489, -70.6693], // Santiago, Chile
+    name: "Hannah Mowrey",
+    company: "Studio Partner",
+    location: "Chicago",
+    testimonial: "Nicolette is strategic and creative and a process-driven professional who is also kind and considerate of others, which makes her the kind of brain and heart combination anyone would be lucky to have on their team.",
+    coordinates: [41.8781, -87.6298], // Chicago
     size: 0.15
   },
   {
-    name: "Sarah Johnson",
-    company: "Artisan Collective",
-    location: "Sydney, Australia",
-    testimonial: "Working with TWO Design was a revelation. They understood our unique vision for our Sydney-based business and translated it into a cohesive brand strategy that resonates with our customers worldwide.",
-    coordinates: [-33.8688, 151.2093], // Sydney, Australia
+    name: "Raphael Cala",
+    company: "Graphic Designer",
+    location: "New York",
+    testimonial: "Nicolette is able to balance big-picture and fine detail. While she gets into the weeds of managing individual deliverables, it always stems from a broader vision or strategy.",
+    coordinates: [40.7128, -74.0060], // New York
     size: 0.15
   },
   {
-    name: "Michael Chang",
-    company: "SustainTech Solutions",
-    location: "Cape Town, South Africa",
-    testimonial: "The team at TWO Design brings a rare combination of creativity and strategic thinking. Their work helped us establish a distinctive presence in Cape Town's competitive market.",
-    coordinates: [-33.9249, 18.4241], // Cape Town, South Africa
+    name: "Kabira Ferrell",
+    company: "Communications Executive",
+    location: "Colorado",
+    testimonial: "It's a rare combination to find someone who is a strategic thinker and marketer, an intuitive designer, and effectively executes while building a team around a mission-driven culture. This is Nicolette. She is curious, kind, empathetic and driven. Not satisfied with good, Nicolette aims for--and delivers--greatness.",
+    coordinates: [39.5501, -105.7821], // Colorado (Denver area)
     size: 0.15
   },
   {
-    name: "Aisha Patel",
-    company: "Mindful Spaces",
-    location: "Toronto, Canada",
-    testimonial: "From concept to execution, TWO Design delivered beyond our expectations. Their thoughtful approach to our Toronto-based branding needs resulted in a visual identity that perfectly captures our essence.",
-    coordinates: [43.6532, -79.3832], // Toronto, Canada
+    name: "Priya Premchandran",
+    company: "Built Environment Expert",
+    location: "San Francisco",
+    testimonial: "Nicolette is an incredibly inclusive leader who respects and welcomes diverse perspectives. She believes in providing agency to others and empowering them to do their best work while providing necessary support. A great collaborator who is always focused on achieving the best outcome.",
+    coordinates: [37.7749, -122.4194], // San Francisco
     size: 0.15
   },
   {
-    name: "Lars Eriksson",
-    company: "Nordic Sustainability",
-    location: "Moscow, Russia",
-    testimonial: "TWO Design's ability to blend aesthetic beauty with functional design is outstanding. They've helped us communicate our commitment to sustainability across Moscow in a visually compelling way.",
-    coordinates: [55.7558, 37.6173], // Moscow, Russia
+    name: "Aaron Grossbard",
+    company: "Digital Marketer",
+    location: "Seattle",
+    testimonial: "Nicolette is easily one of the best points of contact I've worked with in my professional career.",
+    coordinates: [47.6062, -122.3321], // Seattle
     size: 0.15
   },
   {
-    name: "Elena Rodriguez",
-    company: "Solaris Energy",
-    location: "Jakarta, Indonesia",
-    testimonial: "The rebranding work done by TWO Design helped us connect with our customers in Jakarta on a deeper level. Our engagement and conversion metrics have improved significantly since the launch.",
-    coordinates: [-6.2088, 106.8456], // Jakarta, Indonesia
+    name: "Tamara Nameroff",
+    company: "Energy Transition Expert",
+    location: "Amsterdam, Netherlands",
+    testimonial: "Nicolette is a dream to work with. She is creative and always on the hunt for improvement opportunities that can be delivered in the time available. She is highly organized and follows through on her commitments. You will love to have her on your team!",
+    coordinates: [52.3676, 4.9041], // Amsterdam, Netherlands
     size: 0.15
   },
   {
-    name: "Kenji Tanaka",
-    company: "Green Future Tech",
-    location: "Rio de Janeiro, Brazil",
-    testimonial: "TWO Design understood our need to balance traditional values with innovation in the Brazilian market. The result was a brand identity for our Rio office that feels both timeless and contemporary.",
-    coordinates: [-22.9068, -43.1729], // Rio de Janeiro, Brazil
+    name: "Vikram Bhalla",
+    company: "Studio Owner",
+    location: "Goa, India",
+    testimonial: "Nicolette leads by example. She is personally invested in the team's efficiency and productivity and manages to balance being the boss and being the friend. Our entire team had immense respect for her. It was a privilege working with--and learning from--Nicolette.",
+    coordinates: [15.2993, 74.1240], // Goa, India
+    size: 0.15
+  },
+  {
+    name: "Georgie Davis",
+    company: "Impact Communications Executive",
+    location: "Outside London, UK",
+    testimonial: "Nicolette is a standout leader with a rare blend of sharp analytical insight, big-picture thinking and abundant creativity. She is inclusive then decisive, delivering clarity and driving change. I've seen her navigate politically challenging leadership dynamics with diplomacy and grace.",
+    coordinates: [51.5074, -0.1278], // London, UK
+    size: 0.15
+  },
+  {
+    name: "Chris Markel",
+    company: "Digital Marketer",
+    location: "Oaxaca, Mexico",
+    testimonial: "Nicolette is organized, pragmatic, has a strong bias for action, listens critically, and processes information quickly and effectively. She has a unique ability to break down complex concepts into digestible chunks for anyone on the team to quickly get up to speed and make impactful contributions.",
+    coordinates: [17.0732, -96.7266], // Oaxaca, Mexico
     size: 0.15
   }
 ];
