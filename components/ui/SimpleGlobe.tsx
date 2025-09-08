@@ -598,7 +598,7 @@ export function SimpleGlobe({
       {/* Testimonial Popup */}
       {selectedTestimonials.length > 0 && (
         <div className="fixed inset-0 flex items-center justify-center z-30 bg-black/40">
-          <div className="bg-white/95 p-8 rounded-xl max-w-md text-gray-800 shadow-2xl relative 
+          <div className="bg-white/95 p-8 max-w-md text-gray-800 shadow-2xl relative 
                          transition-all duration-500 animate-in fade-in zoom-in-95
                          border border-gray-200 backdrop-blur-sm">
             <button 
@@ -645,11 +645,11 @@ export function SimpleGlobe({
               </div>
             )}
             
-            <div className="mb-2 pb-1 inline-block border-b-2 border-blue-500/50">
+            <div className="mb-2 pb-1 inline-block border-b-2 border-red-800">
               <h3 className="text-xl pr-6 font-bold" style={{ fontFamily: 'var(--font-instrument-serif)' }}>{selectedTestimonials[currentTestimonialIndex].name}</h3>
             </div>
             <p className="text-gray-600 italic font-medium text-sm" style={{ fontFamily: 'var(--font-instrument-sans)' }}>{selectedTestimonials[currentTestimonialIndex].company}</p>
-            <p className="text-blue-600 text-xs mb-4" style={{ fontFamily: 'var(--font-instrument-sans)' }}>{selectedTestimonials[currentTestimonialIndex].location}</p>
+            <p className="text-red-800 text-xs mb-4" style={{ fontFamily: 'var(--font-instrument-sans)' }}>{selectedTestimonials[currentTestimonialIndex].location}</p>
             <p className="text-gray-700 leading-relaxed text-sm" style={{ fontFamily: 'var(--font-instrument-sans)' }}>"{selectedTestimonials[currentTestimonialIndex].testimonial}"</p>
           </div>
         </div>

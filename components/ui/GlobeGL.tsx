@@ -321,7 +321,7 @@ export function GlobeGL({
           <div 
             className={`
               ${darkMode ? 'bg-gray-900/90' : 'bg-white/90'} 
-              p-8 rounded-xl max-w-md 
+              p-8 max-w-md 
               ${darkMode ? 'text-white' : 'text-gray-800'} 
               shadow-2xl relative 
               transition-all duration-300 animate-in fade-in zoom-in-95
@@ -352,11 +352,11 @@ export function GlobeGL({
             >
               <X size={20} />
             </button>
-            <div className="mb-1 pb-0.5 inline-block border-b-2 border-orange-500/30">
+            <div className="mb-1 pb-0.5 inline-block border-b-2 border-red-800">
               <h3 className="text-2xl font-bold pr-6">{selectedTestimonial.name}</h3>
             </div>
             <p className={`${darkMode ? 'text-gray-300' : 'text-gray-700'} italic font-medium`}>{selectedTestimonial.company}</p>
-            <p className={`${darkMode ? 'text-orange-400' : 'text-orange-600'} text-sm mb-6`}>{selectedTestimonial.location}</p>
+            <p className={`${darkMode ? 'text-red-400' : 'text-red-800'} text-sm mb-6`}>{selectedTestimonial.location}</p>
             <p className={`${darkMode ? 'text-gray-100' : 'text-gray-800'} leading-relaxed`}>"{selectedTestimonial.testimonial}"</p>
           </div>
         </div>
