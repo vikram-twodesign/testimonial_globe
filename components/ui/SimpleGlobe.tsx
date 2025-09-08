@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState, useCallback } from "react"
 import { cn } from "@/lib/utils"
 import { X, Moon, Sun } from "lucide-react"
+import * as THREE from "three"
 
 // Type for the Globe instance
 type GlobeInstance = any;
@@ -196,7 +197,7 @@ const DEFAULT_MARKERS: GlobeMarker[] = createMarkersFromTestimonials();
 // Default configuration
 const DEFAULT_CONFIG: GlobeConfig = {
   markers: DEFAULT_MARKERS,
-  markerColor: [251/255, 100/255, 21/255], // Orange color
+  markerColor: [139/255, 0, 0], // Deep red color (#8B0000)
   backgroundColor: "rgba(0, 0, 0, 0)",
   autoRotate: true,
   autoRotateSpeed: 0.5,
@@ -395,46 +396,58 @@ export function SimpleGlobe({
       // Convert RGB array to CSS color string
       const markerColorString = getMarkerColorString(markerColor);
       
-      // Configure globe with less detail
+      // Configure globe with emoji pins via HTML elements (📍)
       globe
-        // Use brighter images for better visibility
-        .globeImageUrl('//unpkg.com/three-globe/example/img/earth-blue-marble.jpg') // Brighter, more detailed texture
-        .bumpImageUrl('//unpkg.com/three-globe/example/img/earth-topology.png') // Add subtle bump mapping for better terrain
+        .globeImageUrl('//unpkg.com/three-globe/example/img/earth-blue-marble.jpg')
+        .bumpImageUrl('//unpkg.com/three-globe/example/img/earth-topology.png')
         .backgroundColor(backgroundColor)
+        .htmlElementsData(markers)
+        .htmlLat((d: GlobeMarker) => d.location[0])
+        .htmlLng((d: GlobeMarker) => d.location[1])
+        .htmlAltitude(0.005)
+        .htmlElement((d: GlobeMarker) => {
+          const el = document.createElement('div');
+          const isMultiple = d.size > 0.15;
+          el.textContent = '📍';
+          el.style.fontSize = isMultiple ? '30px' : '24px';
+          el.style.lineHeight = '1';
+          el.style.transform = 'translate(-50%, -100%)'; // bottom tip at lat/lng
+          el.style.filter = 'drop-shadow(0 2px 2px rgba(0,0,0,0.35))';
+          el.style.cursor = 'pointer';
+          el.style.userSelect = 'none';
+          el.style.pointerEvents = 'auto';
+
+          // Hover: slow rotation and show pointer
+          el.addEventListener('mouseenter', () => {
+            const controls = globeEl.current?.controls?.();
+            if (controls) controls.autoRotateSpeed = 0.1;
+          });
+          el.addEventListener('mouseleave', () => {
+            const controls = globeEl.current?.controls?.();
+            if (controls) controls.autoRotateSpeed = autoRotateSpeed;
+          });
+
+          // Click: open testimonials using existing handler
+          el.addEventListener('click', (e) => {
+            e.stopPropagation();
+            handlePointClick(d);
+          });
+
+          return el;
+        })
+        // Invisible points layer to capture precise raycast clicks/hover
         .pointsData(markers)
         .pointLat((d: GlobeMarker) => d.location[0])
         .pointLng((d: GlobeMarker) => d.location[1])
-        .pointColor((d: GlobeMarker) => {
-          // Different colors for single vs multiple testimonials
-          const testimonialsAtLocation = testimonials.filter(t => 
-            Math.abs(t.coordinates[0] - d.location[0]) < 0.001 && 
-            Math.abs(t.coordinates[1] - d.location[1]) < 0.001
-          );
-          const isMultiple = testimonialsAtLocation.length > 1;
-          
-          if (isMultiple) {
-            // Slightly different color for multiple testimonials (more vibrant orange)
-            return 'rgba(255, 120, 40, 1)';
-          } else {
-            // Original color for single testimonials
-            return markerColorString;
-          }
+        .pointColor(() => 'rgba(0,0,0,0)')
+        .pointRadius(1.1)
+        .pointAltitude(0.005)
+        .onPointHover((p: GlobeMarker | null) => {
+          const controls = globeEl.current?.controls?.();
+          if (controls) controls.autoRotateSpeed = p ? 0.1 : autoRotateSpeed;
+          if (containerRef.current) containerRef.current.style.cursor = p ? 'pointer' : 'grab';
         })
-        .pointRadius((d: GlobeMarker) => {
-          // Dynamic radius based on testimonial count
-          return d.size > 0.15 ? 1.5 : 1.2;
-        })
-        .pointAltitude(0.02) // Reduced height for markers
-        .onPointHover((point: GlobeMarker | null) => {
-          if (globeEl.current && globeEl.current.controls) {
-            // Slow down rotation when hovering over a point
-            const controls = globeEl.current.controls();
-            if (controls) {
-              controls.autoRotateSpeed = point ? 0.1 : autoRotateSpeed;
-            }
-          }
-        })
-        .onPointClick(handlePointClick); // Add click handler
+        .onPointClick(handlePointClick);
       
       // Set auto-rotation
       if (globe.controls()) {
