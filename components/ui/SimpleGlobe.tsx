@@ -646,11 +646,11 @@ export function SimpleGlobe({
             )}
             
             <div className="mb-2 pb-1 inline-block border-b-2 border-blue-500/50">
-              <h3 className="text-xl font-bold pr-6">{selectedTestimonials[currentTestimonialIndex].name}</h3>
+              <h3 className="text-xl pr-6 font-bold" style={{ fontFamily: 'var(--font-instrument-serif)' }}>{selectedTestimonials[currentTestimonialIndex].name}</h3>
             </div>
-            <p className="text-gray-600 italic font-medium text-sm">{selectedTestimonials[currentTestimonialIndex].company}</p>
-            <p className="text-blue-600 text-xs mb-4">{selectedTestimonials[currentTestimonialIndex].location}</p>
-            <p className="text-gray-700 leading-relaxed text-sm">"{selectedTestimonials[currentTestimonialIndex].testimonial}"</p>
+            <p className="text-gray-600 italic font-medium text-sm" style={{ fontFamily: 'var(--font-instrument-sans)' }}>{selectedTestimonials[currentTestimonialIndex].company}</p>
+            <p className="text-blue-600 text-xs mb-4" style={{ fontFamily: 'var(--font-instrument-sans)' }}>{selectedTestimonials[currentTestimonialIndex].location}</p>
+            <p className="text-gray-700 leading-relaxed text-sm" style={{ fontFamily: 'var(--font-instrument-sans)' }}>"{selectedTestimonials[currentTestimonialIndex].testimonial}"</p>
           </div>
         </div>
       )}

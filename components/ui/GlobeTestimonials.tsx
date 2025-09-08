@@ -619,11 +619,11 @@ export function GlobeTestimonials({
               <X size={20} />
             </button>
             <div className="mb-1 pb-0.5 inline-block border-b-2 border-orange-500/30">
-              <h3 className="text-2xl font-bold pr-6">{selectedTestimonial.name}</h3>
+              <h3 className="text-2xl pr-6 font-bold" style={{ fontFamily: 'var(--font-instrument-serif)' }}>{selectedTestimonial.name}</h3>
             </div>
-            <p className={`${darkMode ? 'text-gray-300' : 'text-gray-700'} italic font-medium`}>{selectedTestimonial.company}</p>
-            <p className={`${darkMode ? 'text-orange-400' : 'text-orange-600'} text-sm mb-6`}>{selectedTestimonial.location}</p>
-            <p className={`${darkMode ? 'text-gray-100' : 'text-gray-800'} leading-relaxed`}>"{selectedTestimonial.testimonial}"</p>
+            <p className={`${darkMode ? 'text-gray-300' : 'text-gray-700'} italic font-medium`} style={{ fontFamily: 'var(--font-instrument-sans)' }}>{selectedTestimonial.company}</p>
+            <p className={`${darkMode ? 'text-orange-400' : 'text-orange-600'} text-sm mb-6`} style={{ fontFamily: 'var(--font-instrument-sans)' }}>{selectedTestimonial.location}</p>
+            <p className={`${darkMode ? 'text-gray-100' : 'text-gray-800'} leading-relaxed`} style={{ fontFamily: 'var(--font-instrument-sans)' }}>"{selectedTestimonial.testimonial}"</p>
           </div>
         </div>
       )}
