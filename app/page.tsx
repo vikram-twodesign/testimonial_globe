@@ -13,10 +13,10 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="w-full h-screen m-0 p-0">
       {error && (
         <div className="absolute inset-0 flex items-center justify-center z-50 bg-red-50">
-          <div className="bg-white p-6 rounded-lg shadow-lg max-w-lg">
+          <div className="bg-white p-6 shadow-lg max-w-lg">
             <h3 className="text-xl font-bold text-red-600 mb-2">Error Loading Globe</h3>
             <p className="text-gray-700">{error}</p>
           </div>
