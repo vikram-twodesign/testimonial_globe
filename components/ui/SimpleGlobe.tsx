@@ -396,7 +396,7 @@ export function SimpleGlobe({
       // Convert RGB array to CSS color string
       const markerColorString = getMarkerColorString(markerColor);
       
-      // Configure globe with emoji pins via HTML elements (📍)
+      // Configure globe with custom SVG pins via HTML elements
       globe
         .globeImageUrl('//unpkg.com/three-globe/example/img/earth-blue-marble.jpg')
         .bumpImageUrl('//unpkg.com/three-globe/example/img/earth-topology.png')
@@ -408,11 +408,17 @@ export function SimpleGlobe({
         .htmlElement((d: GlobeMarker) => {
           const el = document.createElement('div');
           const isMultiple = d.size > 0.15;
-          el.textContent = '📍';
-          el.style.fontSize = isMultiple ? '30px' : '24px';
-          el.style.lineHeight = '1';
+          
+          // Create an img element for the SVG
+          const img = document.createElement('img');
+          img.src = '/location_pin.svg';
+          img.style.width = isMultiple ? '32px' : '24px';
+          img.style.height = isMultiple ? '32px' : '24px';
+          img.style.display = 'block';
+          
+          el.appendChild(img);
           el.style.transform = 'translate(-50%, -100%)'; // bottom tip at lat/lng
-          el.style.filter = 'drop-shadow(0 2px 2px rgba(0,0,0,0.35))';
+          el.style.filter = 'drop-shadow(0 2px 4px rgba(0,0,0,0.4))';
           el.style.cursor = 'pointer';
           el.style.userSelect = 'none';
           el.style.pointerEvents = 'auto';
