@@ -504,10 +504,9 @@ export function SimpleGlobe({
     const handleResize = () => {
       if (containerRef.current && globeEl.current) {
         try {
-          // Get the smallest dimension to ensure the globe fits completely
-          const width = containerRef.current.clientWidth;
-          const height = containerRef.current.clientHeight;
-          const size = Math.min(width, height);
+          // Get container dimensions
+          const rect = containerRef.current.getBoundingClientRect();
+          const size = Math.min(rect.width, rect.height);
           
           // Update globe size
           globeEl.current.width(size);
@@ -520,6 +519,7 @@ export function SimpleGlobe({
             canvas.style.left = '50%';
             canvas.style.top = '50%';
             canvas.style.transform = 'translate(-50%, -50%)';
+            canvas.style.display = 'block';
           }
         } catch (err) {
           console.error("Error resizing globe:", err);
@@ -529,8 +529,10 @@ export function SimpleGlobe({
     
     window.addEventListener('resize', handleResize);
     
-    // Call once to set initial size
+    // Call once to set initial size, with a small delay for iframe rendering
     handleResize();
+    setTimeout(handleResize, 100);
+    setTimeout(handleResize, 500);
     
     return () => {
       window.removeEventListener('resize', handleResize);
@@ -544,13 +546,13 @@ export function SimpleGlobe({
 
   return (
     <div className={cn(
-      "relative w-full h-full flex items-center justify-center", 
+      "relative w-full h-full flex items-center justify-center overflow-hidden", 
       darkMode ? "bg-black" : "bg-white",
       className
     )}>
       <div 
         ref={containerRef}
-        className="relative w-full h-full mx-auto max-w-[800px]"
+        className="relative aspect-square w-full max-w-[min(100vw,100vh,800px)] flex items-center justify-center"
       >
         {/* Globe element will be dynamically added to this container */}
       </div>
