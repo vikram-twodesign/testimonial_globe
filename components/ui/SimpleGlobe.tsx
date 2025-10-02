@@ -140,7 +140,7 @@ const testimonials: Testimonial[] = [
     name: "Vikram Bhalla",
     company: "Studio Owner",
     location: "Goa, India",
-    testimonial: "Nicolette leads by example. She is personally invested in the team's efficiency and productivity and manages to balance being the boss and being the friend. Our entire team had immense respect for her. It was a privilege working with--and learning from--Nicolette. I'd jump at the chance again.",
+    testimonial: "Nicolette leads by example. She is personally invested in the team's efficiency and productivity and manages to balance being the boss and being the friend. Our entire team had immense respect for her. It was a privilege working with—and learning from—Nicolette. I'd jump at the chance again.",
     coordinates: [15.2993, 74.1240], // Goa, India
   },
   {
