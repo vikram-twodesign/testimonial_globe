@@ -538,33 +538,13 @@ export function SimpleGlobe({
 
   return (
     <div className={cn(
-      "relative w-full h-full", 
+      "relative w-full h-full flex items-center justify-center", 
       darkMode ? "bg-black" : "bg-white",
       className
     )}>
-      {/* Stars background */}
-      <div className="absolute inset-0 overflow-hidden">
-        {Array.from({ length: 150 }).map((_, i) => (
-          <div 
-            key={i}
-            className={cn(
-              "absolute rounded-full",
-              darkMode ? "bg-white/40" : "bg-black/40"
-            )}
-            style={{
-              width: `${Math.random() * 3 + 1}px`,
-              height: `${Math.random() * 3 + 1}px`,
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
-              opacity: Math.random() * 0.8 + 0.2
-            }}
-          />
-        ))}
-      </div>
-      
       <div 
         ref={containerRef}
-        className="relative mx-auto w-full h-full"
+        className="relative w-full h-full mx-auto max-w-[800px]"
       >
         {/* Globe element will be dynamically added to this container */}
       </div>
@@ -590,7 +570,7 @@ export function SimpleGlobe({
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="text-center">
             <div className="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full mx-auto animate-spin"></div>
-            <p className={cn("mt-2", darkMode ? "text-white" : "text-gray-800")}>Loading globe...</p>
+            <p className={cn("mt-2", darkMode ? "text-white" : "text-black")}>Loading globe...</p>
           </div>
         </div>
       )}
@@ -598,11 +578,11 @@ export function SimpleGlobe({
       {/* Testimonial Popup */}
       {selectedTestimonials.length > 0 && (
         <div className="fixed inset-0 flex items-center justify-center z-30 bg-black/40">
-          <div className="bg-white/95 p-8 max-w-md text-gray-800 shadow-2xl relative 
+          <div className="bg-white/95 p-8 max-w-md text-black shadow-2xl relative 
                          transition-all duration-500 animate-in fade-in zoom-in-95
                          border border-gray-200 backdrop-blur-sm">
             <button 
-              className="absolute top-3 right-3 p-1.5 text-gray-500 hover:text-gray-800
+              className="absolute top-3 right-3 p-1.5 text-black/50 hover:text-black
                         hover:bg-gray-200/50 rounded-full 
                         transition-colors"
               onClick={() => {
@@ -627,17 +607,17 @@ export function SimpleGlobe({
               <div className="mb-3 flex items-center justify-between">
                 <button
                   onClick={goToPreviousTestimonial}
-                  className="p-1.5 text-gray-500 hover:text-gray-800 hover:bg-gray-200/50 rounded-full transition-colors"
+                  className="p-1.5 text-black/50 hover:text-black hover:bg-gray-200/50 rounded-full transition-colors"
                   aria-label="Previous testimonial"
                 >
                   ←
                 </button>
-                <span className="text-xs text-gray-500 font-medium">
+                <span className="text-xs text-black/60 font-medium">
                   {currentTestimonialIndex + 1} of {selectedTestimonials.length}
                 </span>
                 <button
                   onClick={goToNextTestimonial}
-                  className="p-1.5 text-gray-500 hover:text-gray-800 hover:bg-gray-200/50 rounded-full transition-colors"
+                  className="p-1.5 text-black/50 hover:text-black hover:bg-gray-200/50 rounded-full transition-colors"
                   aria-label="Next testimonial"
                 >
                   →
@@ -648,9 +628,9 @@ export function SimpleGlobe({
             <div className="mb-2 pb-1 inline-block border-b-2 border-red-800">
               <h3 className="text-xl pr-6 font-bold" style={{ fontFamily: 'var(--font-instrument-serif)' }}>{selectedTestimonials[currentTestimonialIndex].name}</h3>
             </div>
-            <p className="text-gray-600 italic font-medium text-sm" style={{ fontFamily: 'var(--font-instrument-sans)' }}>{selectedTestimonials[currentTestimonialIndex].company}</p>
+            <p className="text-black font-medium text-sm" style={{ fontFamily: 'var(--font-instrument-sans)' }}>{selectedTestimonials[currentTestimonialIndex].company}</p>
             <p className="text-red-800 text-xs mb-4" style={{ fontFamily: 'var(--font-instrument-sans)' }}>{selectedTestimonials[currentTestimonialIndex].location}</p>
-            <p className="text-gray-700 leading-relaxed text-sm" style={{ fontFamily: 'var(--font-instrument-sans)' }}>"{selectedTestimonials[currentTestimonialIndex].testimonial}"</p>
+            <p className="text-black leading-relaxed text-sm" style={{ fontFamily: 'var(--font-instrument-sans)' }}>"{selectedTestimonials[currentTestimonialIndex].testimonial}"</p>
           </div>
         </div>
       )}
@@ -658,7 +638,7 @@ export function SimpleGlobe({
       {/* Instruction text */}
       <div className={cn(
         "absolute bottom-5 left-0 right-0 text-center text-sm opacity-70",
-        darkMode ? "text-white" : "text-gray-800"
+        darkMode ? "text-white" : "text-black"
       )}>
         Drag to rotate the globe. Click on markers to view testimonials.<br />
         <span className="text-xs opacity-60">Larger, brighter markers have multiple testimonials.</span>

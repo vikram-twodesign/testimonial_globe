@@ -515,18 +515,13 @@ export function GlobeTestimonials({
 
   // If not mounted yet, return a simple placeholder to avoid hydration errors
   if (!mounted) {
-    return <div className="relative w-full h-full bg-black" />;
+    return <div className="relative w-full h-full bg-white" />;
   }
 
   return (
-    <div className={`relative w-full h-full ${darkMode ? 'bg-black' : 'bg-white'}`}>
+    <div className={`relative w-full h-full flex items-center justify-center ${darkMode ? 'bg-black' : 'bg-white'}`}>
       {/* Custom cursor */}
       <div style={cursorStyles} />
-      
-      {/* Stars background */}
-      <div className="absolute inset-0 overflow-hidden">
-        {renderStars()}
-      </div>
       
       {/* Light/Dark Mode Toggle */}
       <button 
@@ -540,7 +535,7 @@ export function GlobeTestimonials({
       {/* Globe container */}
       <div 
         ref={containerRef}
-        className="absolute inset-0 mx-auto aspect-[1/1] w-full max-w-[800px]"
+        className="relative aspect-[1/1] w-full max-w-[800px]"
         onPointerDown={(e) => { 
           if (!isHoveringMarkerRef.current) { 
             updatePointerInteraction(e.clientX - pointerInteractionMovement.current); 
@@ -621,14 +616,14 @@ export function GlobeTestimonials({
             <div className="mb-1 pb-0.5 inline-block border-b-2 border-red-800">
               <h3 className="text-2xl pr-6 font-bold" style={{ fontFamily: 'var(--font-instrument-serif)' }}>{selectedTestimonial.name}</h3>
             </div>
-            <p className={`${darkMode ? 'text-gray-300' : 'text-gray-700'} italic font-medium`} style={{ fontFamily: 'var(--font-instrument-sans)' }}>{selectedTestimonial.company}</p>
+            <p className={`${darkMode ? 'text-white' : 'text-black'} font-medium`} style={{ fontFamily: 'var(--font-instrument-sans)' }}>{selectedTestimonial.company}</p>
             <p className={`${darkMode ? 'text-red-400' : 'text-red-800'} text-sm mb-6`} style={{ fontFamily: 'var(--font-instrument-sans)' }}>{selectedTestimonial.location}</p>
-            <p className={`${darkMode ? 'text-gray-100' : 'text-gray-800'} leading-relaxed`} style={{ fontFamily: 'var(--font-instrument-sans)' }}>"{selectedTestimonial.testimonial}"</p>
+            <p className={`${darkMode ? 'text-white' : 'text-black'} leading-relaxed`} style={{ fontFamily: 'var(--font-instrument-sans)' }}>"{selectedTestimonial.testimonial}"</p>
           </div>
         </div>
       )}
       
-      <div className={`absolute bottom-5 left-0 right-0 text-center ${darkMode ? 'text-white' : 'text-gray-800'} text-sm opacity-70`}>
+      <div className={`absolute bottom-5 left-0 right-0 text-center ${darkMode ? 'text-white' : 'text-black'} text-sm opacity-70`}>
         Click and drag to rotate the globe. Click on markers to view testimonials.
       </div>
     </div>
